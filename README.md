@@ -1,122 +1,112 @@
 # Project-2--SEM-Path-Model
+# Personal Growth, Identity Formation, and Well-Being in R
 
-Project Overview
-This project investigates the relationship between personal growth initiative, identity formation, self-esteem, and depressive symptoms using structural equation modelling (SEM).
-The analysis is based on published summary statistics from a sample of 551 adolescents and young adults and examines whether the relationship between personal growth initiative and psychological well-being is mediated by different identity-formation processes.
-The project demonstrates the specification, estimation, evaluation, and modification of structural equation models in R.
-Research Question
-Does identity formation mediate the relationship between personal growth initiative and psychological well-being, specifically self-esteem and depressive symptoms?
-The hypothesised model includes four dimensions of personal growth initiative:
-- Readiness for change
-- Planfulness
-- Using resources
-- Intentional behaviour
-These are linked to five identity-formation processes:
-- Commitment making
-- Identification with commitment
-- Exploration in breadth
-- Exploration in depth
-- Ruminative exploration
-The two outcome variables are:
-- Self-esteem
-- Depressive symptoms
-Data
-The analysis uses the correlation matrix and summary statistics reported by Luyckx and Robitschek (2014).
-Characteristic	Description
-Sample size	551
-Population	Adolescents and young adults
-Age range	14–35 years
-Country	Belgium
-PGI variables	4
-Identity variables	5
-Outcome variables	2
-Total observed variables	11
+This project examines whether identity formation mediates the relationship between personal growth initiative and psychological well-being, specifically self-esteem and depressive symptoms.
 
+The analysis was conducted in **R** using structural equation modelling, covariance matrix reconstruction, model comparison, modification indices, fit statistics, and path analysis.
 
-The R script reconstructs the correlation and covariance matrices from published correlations, standard deviations, and the reported sample size. As a result, no separate raw-data file is required to run the analysis.
-Analysis
-1. Reconstructing the covariance matrix
-The published correlation matrix is entered directly into R and converted into a covariance matrix using the reported standard deviations.
-This allows the structural model to be estimated from summary-level information rather than individual-level observations.
-2. Specifying the structural model
-The model represents relationships between personal growth initiative, identity-formation processes, self-esteem, and depressive symptoms.
-The script specifies:
-- Regression paths between variables
-- Residual variances
-- Covariances between theoretically related constructs
-3. Model estimation
-Models are estimated using the lavaan package with Wishart maximum likelihood estimation.
-Model fit is evaluated using:
-- Chi-square test of exact fit
-- Root Mean Square Error of Approximation (RMSEA)
-- Comparative Fit Index (CFI)
-4. Model modification
-The analysis evaluates model fit and investigates whether the initial specification can be improved.
-Modification indices are inspected, additional parameters are introduced sequentially, and nested models are compared using likelihood-ratio tests.
-The workflow also tracks changes in:
-- Chi-square
-- RMSEA
-- CFI
-across successive models.
-5. Model comparison and visualisation
-The script compares successive SEM specifications and extracts model-fit statistics for plotting.
-Line plots are used to visualise changes in:
-- RMSEA
-- Chi-square
-- CFI
-across the fitted models.
-Methods & R Packages
+## Research Question
+
+Does identity formation mediate the relationship between personal growth initiative and self-esteem and depressive symptoms?
+
+## Data
+
+The analysis is based on published summary statistics from **551 adolescents and young adults aged 14–35 years in Belgium**.
+
+The dataset contains eleven variables:
+
+| Variable            | Description                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `Change`            | Readiness for change                                             |
+| `Planfulness`       | Ability to plan personal growth                                  |
+| `Resources`         | Use of resources for personal growth                             |
+| `Intention`         | Intentional behaviour related to personal growth                 |
+| `Commitment`        | Commitment making                                                |
+| `Identification`    | Identification with commitment                                   |
+| `ExploreBreadth`    | Exploration in breadth                                           |
+| `ExploreDepth`      | Exploration in depth                                             |
+| `ExploreRum`        | Ruminative exploration                                           |
+| `SelfEsteem`        | Self-esteem                                                      |
+| `Depression`        | Depressive symptoms                                              |
+
+The R script reconstructs the correlation and covariance matrices from the published correlations, standard deviations, and sample size.
+
+## Analysis
+
+The analysis consists of several steps:
+
+1. **Correlation and covariance matrices**
+   The published correlations are entered into R and converted into a correlation matrix and covariance matrix using the reported standard deviations.
+
+2. **Initial model specification**
+   A structural equation model is specified linking the four personal growth initiative variables to identity formation processes and, subsequently, to self-esteem and depressive symptoms.
+
+3. **Model estimation**
+   The model is estimated using the `lavaan` package with Wishart maximum likelihood estimation.
+
+4. **Model modification**
+   Modification indices are inspected and additional covariance parameters are introduced sequentially to investigate whether model fit can be improved.
+
+5. **Model comparison**
+   Successive models are compared using likelihood-ratio tests to assess whether the additional parameters significantly improve model fit.
+
+6. **Fit assessment**
+   Model fit is evaluated using the chi-square test of exact fit, RMSEA, and CFI.
+
+7. **Visualisation**
+   Changes in RMSEA, chi-square, and CFI across model specifications are visualised using line plots.
+
+## Methods & R Packages
+
+The project demonstrates the use of:
+
+* Structural equation modelling
+* Path analysis
+* Mediation modelling
+* Covariance matrix reconstruction
+* Modification indices
+* Nested model comparison
+* Likelihood-ratio testing
+* Model fit assessment
+* Standardized effect estimates
+* Statistical visualisation
+
+### Packages
+
+```r
 library(lavaan)
 library(semPlot)
 library(corrplot)
 library(tidyverse)
-The main statistical methods used in this project include:
-- Structural equation modelling
-- Path analysis
-- Mediation modelling
-- Covariance modelling
-- Modification indices
-- Nested-model comparison
-- Likelihood-ratio testing
-- Model-fit evaluation
-- Standardised effect interpretation
-Model Fit
-Model fit is evaluated using several complementary indices.
-Chi-square evaluates exact model fit, while RMSEA evaluates approximate fit and CFI compares the specified model with a more restrictive baseline model.
-The analysis additionally visualises how these indices change during model modification.
-Repository Structure
+```
+
+## Repository Structure
+
+```text
 Project-2---SEM/
 │
-├── Project 2.R
-│   └── R code for covariance-matrix reconstruction,
-│       SEM estimation, model modification,
-│       model comparison, and visualisation
-│
-├── Project 2.docx
-│   └── Written research report describing the theoretical model,
-│       methodology, results, and interpretation
-│
-└── README.md
-    └── Project documentation
-Running the Analysis
-1. Clone or download the repository.
-2. Open Project 2.R in RStudio.
-3. Install the required packages if necessary.
-4. Run the script sequentially from top to bottom.
-Because the covariance matrix is reconstructed directly from published summary statistics, no separate raw-data file is required.
-Skills Demonstrated
-- Structural equation modelling in R
-- Path-model specification
-- Mediation modelling
-- Model identification
-- Covariance-matrix reconstruction
-- Evaluation of SEM fit statistics
-- Interpretation of modification indices
-- Nested-model comparison
-- Statistical visualisation
-- Reproducible quantitative research
-- Translation of theoretical hypotheses into statistical models
-Reference
-Luyckx, K., & Robitschek, C. (2014). Personal growth initiative and identity formation in adolescence through young adulthood: Mediating processes on the pathway to well-being. Journal of Adolescence, 37(7), 973–981.
-Author
-Laura Maria Fetz
+├── Project 2 - Path Model.R          # R analysis script
+├── Project 2 - Path Model.docx       # Written analysis/report
+└── README.md                         # Project documentation
+```
+
+## Running the Analysis
+
+Clone the repository and open the project in R or RStudio.
+
+No separate raw dataset is required because the correlation matrix, standard deviations, and sample size are entered directly in the R script.
+
+Then run the analysis contained in:
+
+```text
+Project 2 - Path Model.R
+```
+
+## Skills Demonstrated
+
+This project demonstrates practical experience with structural equation modelling in R, including covariance matrix reconstruction, path-model specification, mediation analysis, model modification, nested model comparison, model-fit evaluation, effect interpretation, and statistical visualisation.
+
+## Author
+
+**Laura M. Fetz**
+

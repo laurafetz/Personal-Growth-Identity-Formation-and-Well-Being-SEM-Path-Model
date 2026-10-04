@@ -109,4 +109,3 @@ This project demonstrates practical experience with structural equation modellin
 ## Author
 
 **Laura M. Fetz**
-

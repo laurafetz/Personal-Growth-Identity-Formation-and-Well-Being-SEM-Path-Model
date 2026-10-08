@@ -5,7 +5,6 @@
 #------------------------------------------------------------------------------- LOADING DATA AND PACKAGES
 # Load packages
 library(lavaan)
-library(semPlot)
 library(corrplot)
 library(tidyverse)
 
@@ -427,7 +426,7 @@ extract_fit_indices <- function(model) {
   rmsea <- as.numeric(lavaan::fitMeasures(model, "rmsea"))
   cfi <- as.numeric(lavaan::fitMeasures(model, "cfi"))
   
-  return(list(chi_square = chi_square, df = df, rmsea = rmsea, cfi = cfi))
+  return(c(chi_square = chi_square, df = df, rmsea = rmsea, cfi = cfi))
 }
 
 # Initialize an empty list to store the results
@@ -448,7 +447,7 @@ results_df <- results %>%
 
 # Transpose results for plotting
 results_transposed_df <- results_df %>%
-  mutate(Model = 1:nrow(results_transposed_df))
+  mutate(Model = seq_len(nrow(results_df)))
 
 
 #------------------------------------------------------------------------------- PLOTTING
@@ -565,8 +564,8 @@ summary(modelFinalOut, standardized = TRUE, fit = TRUE)
 fitMeasures(modelFinalOut)
 fitMeasures(model18Out)
 
-install.packages("DiagrammeR")
-library(DiagrammeR)
-
-DiagrammeR?
-
+dir.create("results", showWarnings = FALSE)
+write.csv(results_transposed_df, "results/model_fit.csv", row.names = FALSE)
+write.csv(parameterEstimates(modelFinalOut, standardized = TRUE, ci = TRUE),
+          "results/final_parameters.csv", row.names = FALSE)
+capture.output(sessionInfo(), file = "results/session_info.txt")

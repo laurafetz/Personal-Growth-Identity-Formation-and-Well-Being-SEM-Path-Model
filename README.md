@@ -1,4 +1,4 @@
-# Project-2--SEM-Path-Model
+# Project-2-SEM-Path-Model
 # Personal Growth, Identity Formation, and Well-Being in R
 
 This project examines whether identity formation mediates the relationship between personal growth initiative and psychological well-being, specifically self-esteem and depressive symptoms.

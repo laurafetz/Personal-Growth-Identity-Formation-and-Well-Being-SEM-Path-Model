@@ -404,7 +404,7 @@ summary(model19Out, fit = TRUE)
 
  
 #------------------------------------------------------------------------------- COMPARING MODELS
-# Assuming model1Out to model19Out are your SEM model results
+# Collect fit statistics for the nineteen specifications
 model_list <- list(model1Out, model2Out, model3Out, model4Out, model5Out,
                    model6Out, model7Out, model8Out, model9Out, model10Out,
                    model11Out, model12Out, model13Out, model14Out, model15Out,
@@ -568,4 +568,4 @@ dir.create("results", showWarnings = FALSE)
 write.csv(results_transposed_df, "results/model_fit.csv", row.names = FALSE)
 write.csv(parameterEstimates(modelFinalOut, standardized = TRUE, ci = TRUE),
           "results/final_parameters.csv", row.names = FALSE)
-capture.output(sessionInfo(), file = "results/session_info.txt")
+capture.output(cat("# Project: Laura Maria Fetz\n"), sessionInfo(), file = "results/session_info.txt")

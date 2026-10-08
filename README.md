@@ -1,36 +1,45 @@
-# Personal Growth, Identity Formation, and Well-Being
+# Personal growth, identity formation, and well-being
 
-An exploratory structural equation model linking personal growth initiative, identity formation, self-esteem, and depressive symptoms. The R script reconstructs a covariance matrix from reported correlations, standard deviations, and a sample size of 551 Belgian adolescents and young adults aged 14–35.
+I examined how personal growth initiative relates to identity formation, self-esteem, and depressive symptoms. I reconstructed a covariance matrix from published correlations and standard deviations for 551 Belgian adolescents and young adults aged 14–35. I fitted path models in lavaan using Wishart maximum likelihood. After exploratory revisions, the final specification had CFI = 0.994 and RMSEA = 0.034, compared with 0.275 and 0.291 for the initial model.
 
-## Analysis
+## Results
 
-The script fits paths from four personal-growth variables to five identity-formation variables and two well-being outcomes, using `lavaan` with Wishart maximum likelihood. It compares successive specifications using fit statistics and likelihood-ratio tests, and visualizes changes in CFI, RMSEA, and chi-square.
+| Specification | χ² | df | CFI | RMSEA |
+| --- | ---: | ---: | ---: | ---: |
+| Initial | 1904.86 | 40 | 0.275 | 0.291 |
+| Final | 37.34 | 23 | 0.994 | 0.034 |
 
-Modification indices guide the exploratory model changes. Improvements in fit on the same summary data do not validate a causal mediation mechanism or establish performance on independent data. See [the original report](docs/original_report.docx) for the original interpretation.
+I recomputed these fit statistics on 8 October 2026. [model_fit.csv](results/model_fit.csv) contains all nineteen specifications; I retained model 18 as the final model. In that model, ruminative exploration was associated with lower self-esteem (standardized coefficient = −0.376) and more depressive symptoms (0.361). I report all estimates in [final_parameters.csv](results/final_parameters.csv).
 
-## Run
+<details>
+<summary>Code and files</summary>
 
-```r
-install.packages(c("lavaan", "corrplot", "tidyverse"))
-```
-
-From the repository root:
+I ran the analysis in R with `lavaan`, `corrplot`, and `tidyverse` installed.
 
 ```bash
 Rscript analysis.R
 ```
 
-All summary inputs are embedded in the script; no participant-level dataset is needed. R prints model output, creates plots, and exports model-fit and parameter tables to `results/`. The complete script ran on 8 October 2026. The script no longer installs packages during analysis.
-
-## Files
+The summary data are embedded in the script. No participant-level data are required.
 
 ```text
 Personal-Growth-Identity-Formation-and-Well-Being-SEM-Path-Model/
-├── analysis.R
-├── docs/original_report.docx
-├── results/
 ├── .gitignore
-└── README.md
+├── README.md
+├── analysis.R
+└── results/
+    ├── final_parameters.csv
+    ├── model_fit.csv
+    ├── model_output.txt
+    └── session_info.txt
 ```
 
-Laura M. Fetz
+</details>
+
+## Limitations
+
+I used modification indices to revise the model on the same data, so the final fit may reflect sample-specific choices. Summary data prevent checks of individual response patterns and missingness. The cross-sectional associations do not establish causal mediation.
+
+## Credits
+
+I completed this individual coursework project as **Laura Maria Fetz**. I used the summary statistics reported by [Luyckx and Robitschek (2014)](https://doi.org/10.1016/j.adolescence.2014.07.009).

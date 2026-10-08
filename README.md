@@ -42,4 +42,4 @@ I used modification indices to revise the model on the same data, so the final f
 
 ## Credits
 
-I completed this individual coursework project as **Laura Maria Fetz**. I used the summary statistics reported by [Luyckx and Robitschek (2014)](https://doi.org/10.1016/j.adolescence.2014.07.009).
+This was completed by **Laura Maria Fetz**. I used the summary statistics reported by [Luyckx and Robitschek (2014)](https://doi.org/10.1016/j.adolescence.2014.07.009).
